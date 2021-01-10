@@ -1,17 +1,8 @@
-# Terraform Provider Scaffolding
+![](https://domene.shop/svg/logo-no.svg)
 
-This repository is a *template* for a [Terraform](https://www.terraform.io) provider. It is intended as a starting point for creating Terraform providers, containing:
+# Terraform Provider Domeneshop
 
- - A resource, and a data source (`internal/provider/`),
- - Examples (`examples/`) and generated documentation (`docs/`),
- - Miscellanious meta files.
- 
-These files contain boilerplate code that you will need to edit to create your own Terraform provider. A full guide to creating Terraform providers can be found at [Writing Custom Providers](https://www.terraform.io/docs/extend/writing-custom-providers.html).
-
-Please see the [GitHub template repository documentation](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template) for how to create a new repository from this template on GitHub.
-
-Once you've written your provider, you'll want to [publish it on the Terraform Registry](https://www.terraform.io/docs/registry/providers/publishing.html) so that others can use it.
-
+Available in the [Terraform Registry](https://registry.terraform.io/providers/innovationnorway/domeneshop/latest).
 
 ## Requirements
 
@@ -43,7 +34,34 @@ Then commit the changes to `go.mod` and `go.sum`.
 
 ## Using the provider
 
-Fill this in for each provider
+```hcl
+variable "domeneshop_token" {
+  type      = string
+  sensitive = true
+}
+
+variable "domeneshop_secret" {
+  type      = string
+  sensitive = true
+}
+
+provider "domeneshop" {
+  token  = var.domeneshop_token
+  secret = var.domeneshop_secret
+}
+
+data "domeneshop_domains" "example" {
+  domain = "example.com"
+}
+
+resource "domeneshop_record" "example" {
+  domain_id = data.domeneshop_domains.test.domains.0.id
+  host      = "foo"
+  type      = "A"
+  data      = "192.0.2.56"
+  ttl       = 300
+}
+```
 
 ## Developing the Provider
 
@@ -60,3 +78,8 @@ In order to run the full suite of Acceptance tests, run `make testacc`.
 ```sh
 $ make testacc
 ```
+
+The following environment variables must be set to run acceptance tests:
+- `DOMENESHOP_TOKEN`
+- `DOMENESHOP_SECRET`
+- `DOMENESHOP_DOMAIN`
