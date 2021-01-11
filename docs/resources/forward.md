@@ -32,4 +32,10 @@ resource "domeneshop_forward" "example" {
 - **frame** (Boolean) Whether to enable frame forwarding using an iframe embed. NOT recommended for a variety of reasons.
 - **id** (String) The ID of this resource.
 
+## Import
 
+Import is supported using the following syntax:
+
+```shell
+terraform import domeneshop_forward.example <domain_id>/<host>
+```

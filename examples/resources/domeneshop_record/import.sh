@@ -1,0 +1,1 @@
+terraform import domeneshop_record.example <domain_id>/<record_id>

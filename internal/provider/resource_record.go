@@ -2,7 +2,9 @@ package provider
 
 import (
 	"context"
+	"fmt"
 	"strconv"
+	"strings"
 
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
@@ -17,6 +19,9 @@ func resourceRecord() *schema.Resource {
 		ReadContext:   resourceRecordRead,
 		UpdateContext: resourceRecordUpdate,
 		DeleteContext: resourceRecordDelete,
+		Importer: &schema.ResourceImporter{
+			State: resourceRecordImport,
+		},
 
 		Schema: map[string]*schema.Schema{
 			"domain_id": {
@@ -329,4 +334,21 @@ func resourceRecordDelete(ctx context.Context, d *schema.ResourceData, meta inte
 	}
 
 	return nil
+}
+
+func resourceRecordImport(d *schema.ResourceData, meta interface{}) ([]*schema.ResourceData, error) {
+	s := strings.Split(d.Id(), "/")
+	if len(s) != 2 {
+		return nil, fmt.Errorf("error importing DNS record: Expected domain_id/record_id, got %s", d.Id())
+	}
+
+	domainID, err := strconv.Atoi(s[0])
+	if err != nil {
+		return nil, fmt.Errorf("error importing DNS record: Expected domain_id to be integer, got %s", s[0])
+	}
+
+	d.Set("domain_id", domainID)
+	d.SetId(s[1])
+
+	return []*schema.ResourceData{d}, nil
 }

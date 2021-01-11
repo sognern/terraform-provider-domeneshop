@@ -45,4 +45,10 @@ resource "domeneshop_record" "example" {
 - **usage** (Number) TLSA record certificate usage.
 - **weight** (Number) SRV record weight. Relevant if multiple records have same preference.
 
+## Import
 
+Import is supported using the following syntax:
+
+```shell
+terraform import domeneshop_record.example <domain_id>/<record_id>
+```

@@ -201,6 +201,30 @@ func TestAccResourceRecord_TLSA(t *testing.T) {
 	})
 }
 
+func TestAccResourceRecord_Import(t *testing.T) {
+	domainID := os.Getenv("DOMENESHOP_DOMAIN_ID")
+	if domainID == "" {
+		t.Skip(`Skipping test because "DOMENESHOP_DOMAIN_ID" is not set`)
+	}
+	host := acctest.RandomWithPrefix("test")
+	resource.UnitTest(t, resource.TestCase{
+		PreCheck:          func() { testAccPreCheck(t) },
+		ProviderFactories: providerFactories,
+		// TODO: CheckDestroy: ,
+		Steps: []resource.TestStep{
+			{
+				Config: testAccResourceRecordImportConfig(domainID, host),
+			},
+			{
+				ResourceName:        "domeneshop_record.test",
+				ImportStateIdPrefix: fmt.Sprintf("%s/", domainID),
+				ImportState:         true,
+				ImportStateVerify:   true,
+			},
+		},
+	})
+}
+
 func testAccResourceRecordConfig(domain string, host string, recordType string, data string) string {
 	return fmt.Sprintf(`
 data "domeneshop_domains" "test" {
@@ -286,6 +310,18 @@ resource "domeneshop_record" "test" {
   usage     = 3
   selector  = 1
   dtype     = 1
+}
+`, domain, host)
+}
+
+func testAccResourceRecordImportConfig(domain string, host string) string {
+	return fmt.Sprintf(`
+resource "domeneshop_record" "test" {
+  domain_id = %s
+  host      = "%s"
+  type      = "CNAME"
+  data      = "example.com."
+  ttl       = 300
 }
 `, domain, host)
 }

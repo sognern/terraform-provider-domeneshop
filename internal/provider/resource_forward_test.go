@@ -39,6 +39,30 @@ func TestAccResourceForward(t *testing.T) {
 	})
 }
 
+func TestAccResourceForward_Import(t *testing.T) {
+	domainID := os.Getenv("DOMENESHOP_DOMAIN_ID")
+	if domainID == "" {
+		t.Skip(`Skipping test because "DOMENESHOP_DOMAIN_ID" is not set`)
+	}
+	host := acctest.RandString(6)
+	resource.UnitTest(t, resource.TestCase{
+		PreCheck:          func() { testAccPreCheck(t) },
+		ProviderFactories: providerFactories,
+		// TODO: CheckDestroy: ,
+		Steps: []resource.TestStep{
+			{
+				Config: testAccResourceForwardImportConfig(domainID, host),
+			},
+			{
+				ResourceName:        "domeneshop_forward.test",
+				ImportStateIdPrefix: fmt.Sprintf("%s/", domainID),
+				ImportState:         true,
+				ImportStateVerify:   true,
+			},
+		},
+	})
+}
+
 func testAccResourceForwardConfig(domain string, host string, url string) string {
 	return fmt.Sprintf(`
 data "domeneshop_domains" "test" {
@@ -51,4 +75,14 @@ resource "domeneshop_forward" "test" {
   url       = "%s"
 }
 `, domain, host, url)
+}
+
+func testAccResourceForwardImportConfig(domain string, host string) string {
+	return fmt.Sprintf(`
+resource "domeneshop_forward" "test" {
+  domain_id = %s
+  host      = "%s"
+  url       = "https://example.com/"
+}
+`, domain, host)
 }

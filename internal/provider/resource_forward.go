@@ -2,6 +2,8 @@ package provider
 
 import (
 	"context"
+	"fmt"
+	"strconv"
 	"strings"
 
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
@@ -17,6 +19,9 @@ func resourceForward() *schema.Resource {
 		ReadContext:   resourceForwardRead,
 		UpdateContext: resourceForwardUpdate,
 		DeleteContext: resourceForwardDelete,
+		Importer: &schema.ResourceImporter{
+			State: resourceForwardImport,
+		},
 
 		Schema: map[string]*schema.Schema{
 			"domain_id": {
@@ -68,7 +73,7 @@ func resourceForwardCreate(ctx context.Context, d *schema.ResourceData, meta int
 
 	// The Location header field contains the location of
 	// the the newly created resource.
-	// Location: https://api.domeneshop.no/v0/domains/{domainId}/dns/${host}
+	// Location: https://api.domeneshop.no/v0/domains/{domainId}/dns/{host}
 	v := strings.Split(r.Header.Get("Location"), "/")
 	host := v[len(v)-1]
 
@@ -138,4 +143,22 @@ func resourceForwardDelete(ctx context.Context, d *schema.ResourceData, meta int
 	}
 
 	return nil
+}
+
+func resourceForwardImport(d *schema.ResourceData, meta interface{}) ([]*schema.ResourceData, error) {
+	s := strings.Split(d.Id(), "/")
+	if len(s) != 2 {
+		return nil, fmt.Errorf("error importing HTTP forward: Expected domain_id/host, got %s", d.Id())
+	}
+
+	domainID, err := strconv.Atoi(s[0])
+	if err != nil {
+		return nil, fmt.Errorf("error importing HTTP forward: Expected domain_id to be integer, got %s", s[0])
+	}
+
+	d.Set("domain_id", domainID)
+	d.Set("host", s[1])
+	d.SetId(s[1])
+
+	return []*schema.ResourceData{d}, nil
 }
