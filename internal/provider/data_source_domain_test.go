@@ -40,7 +40,7 @@ data "domeneshop_domains" "test" {
 }
 
 data "domeneshop_domain" "test" {
-  domain_id = data.domeneshop_domains.test.domains.0.id
+  domain_id = data.domeneshop_domains.test.domains[0].id
 }
 `, domain)
 }

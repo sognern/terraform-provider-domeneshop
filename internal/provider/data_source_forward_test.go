@@ -35,13 +35,13 @@ data "domeneshop_domains" "test" {
 }
 
 resource "domeneshop_forward" "test" {
-  domain_id = data.domeneshop_domains.test.domains.0.id
+  domain_id = data.domeneshop_domains.test.domains[0].id
   host      = "%s"
   url       = "https://example.com/foo"
 }
 
 data "domeneshop_forward" "test" {
-  domain_id  = data.domeneshop_domains.test.domains.0.id
+  domain_id  = data.domeneshop_domains.test.domains[0].id
   host       = domeneshop_forward.test.host
   depends_on = [domeneshop_forward.test]
 }

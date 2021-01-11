@@ -36,7 +36,7 @@ data "domeneshop_domains" "test" {
 }
 
 resource "domeneshop_record" "test" {
-  domain_id = data.domeneshop_domains.test.domains.0.id
+  domain_id = data.domeneshop_domains.test.domains[0].id
   host      = "%s"
   type      = "A"
   data      = "192.0.2.56"
@@ -44,7 +44,7 @@ resource "domeneshop_record" "test" {
 }
 
 data "domeneshop_records" "test" {
-  domain_id  = data.domeneshop_domains.test.domains.0.id
+  domain_id  = data.domeneshop_domains.test.domains[0].id
   host       = domeneshop_record.test.host
   depends_on = [domeneshop_record.test]
 }

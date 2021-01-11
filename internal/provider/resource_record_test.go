@@ -232,7 +232,7 @@ data "domeneshop_domains" "test" {
 }
 
 resource "domeneshop_record" "test" {
-  domain_id = data.domeneshop_domains.test.domains.0.id
+  domain_id = data.domeneshop_domains.test.domains[0].id
   host      = "%s"
   type      = "%s"
   data      = "%s"
@@ -248,7 +248,7 @@ data "domeneshop_domains" "test" {
 }
 
 resource "domeneshop_record" "test" {
-  domain_id = data.domeneshop_domains.test.domains.0.id
+  domain_id = data.domeneshop_domains.test.domains[0].id
   host      = "%s"
   type      = "CAA"
   data      = "%[2]s.%[1]s."
@@ -266,7 +266,7 @@ data "domeneshop_domains" "test" {
 }
 
 resource "domeneshop_record" "test" {
-  domain_id = data.domeneshop_domains.test.domains.0.id
+  domain_id = data.domeneshop_domains.test.domains[0].id
   host      = "%s"
   type      = "MX"
   data      = "%[2]s.%[1]s."
@@ -283,7 +283,7 @@ data "domeneshop_domains" "test" {
 }
 
 resource "domeneshop_record" "test" {
-  domain_id = data.domeneshop_domains.test.domains.0.id
+  domain_id = data.domeneshop_domains.test.domains[0].id
   host      = "_sip._tcp.%s"
   type      = "SRV"
   data      = "%[2]s.%[1]s."
@@ -302,7 +302,7 @@ data "domeneshop_domains" "test" {
 }
 
 resource "domeneshop_record" "test" {
-  domain_id = data.domeneshop_domains.test.domains.0.id
+  domain_id = data.domeneshop_domains.test.domains[0].id
   host      = "%s"
   type      = "TLSA"
   data      = "b35e305e00c2b663444a9e3f0f36fdb876a2a9f9822a44d4954810aed290f5c2"
