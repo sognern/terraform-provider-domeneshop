@@ -79,6 +79,7 @@ jobs:
           DOMENESHOP_TOKEN: ${{ secrets.DOMENESHOP_TOKEN }}
           DOMENESHOP_SECRET: ${{ secrets.DOMENESHOP_SECRET }}
           DOMENESHOP_DOMAIN: ${{ secrets.DOMENESHOP_DOMAIN }}
+          DOMENESHOP_DOMAIN_ID: ${{ secrets.DOMENESHOP_DOMAIN_ID }}
 
         run: |
           go test -v -cover ./internal/provider/
