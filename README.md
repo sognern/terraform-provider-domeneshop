@@ -55,7 +55,7 @@ data "domeneshop_domains" "example" {
 }
 
 resource "domeneshop_record" "example" {
-  domain_id = data.domeneshop_domains.test.domains.0.id
+  domain_id = data.domeneshop_domains.example.domains[0].id
   host      = "foo"
   type      = "A"
   data      = "192.0.2.56"
