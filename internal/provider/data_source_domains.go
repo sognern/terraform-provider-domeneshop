@@ -115,23 +115,23 @@ func dataSourceDomainsRead(ctx context.Context, d *schema.ResourceData, meta int
 	var domains []interface{}
 	for _, v := range resp {
 		var services []interface{}
-		if v.Services != nil {
+		if v.HasServices() {
 			services = append(services, map[string]interface{}{
-				"registrar": v.Services.Registrar,
-				"dns":       v.Services.Dns,
-				"email":     v.Services.Email,
-				"webhotel":  v.Services.Webhotel,
+				"registrar": v.Services.GetRegistrar(),
+				"dns":       v.Services.GetDns(),
+				"email":     v.Services.GetEmail(),
+				"webhotel":  v.Services.GetWebhotel(),
 			})
 		}
 		domains = append(domains, map[string]interface{}{
-			"id":              v.Id,
-			"domain":          v.Domain,
-			"expiry_date":     v.ExpiryDate,
-			"registered_date": v.RegisteredDate,
-			"renew":           v.Renew,
-			"registrant":      v.Registrant,
-			"status":          v.Status,
-			"nameservers":     v.Nameservers,
+			"id":              v.GetId(),
+			"domain":          v.GetDomain(),
+			"expiry_date":     v.GetExpiryDate(),
+			"registered_date": v.GetRegisteredDate(),
+			"renew":           v.GetRenew(),
+			"registrant":      v.GetRegistrant(),
+			"status":          v.GetStatus(),
+			"nameservers":     v.GetNameservers(),
 			"services":        services,
 		})
 	}

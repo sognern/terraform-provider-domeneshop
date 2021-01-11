@@ -98,21 +98,21 @@ func dataSourceDomainRead(ctx context.Context, d *schema.ResourceData, meta inte
 		return diag.Errorf("error getting domain (ID: %d): %s %s", domainID, err.Error(), err.Body())
 	}
 
-	d.Set("domain", resp.Domain)
-	d.Set("expiry_date", resp.ExpiryDate)
-	d.Set("registered_date", resp.RegisteredDate)
-	d.Set("renew", resp.Renew)
-	d.Set("registrant", resp.Registrant)
-	d.Set("status", resp.Status)
-	d.Set("nameservers", resp.Nameservers)
+	d.Set("domain", resp.GetDomain())
+	d.Set("expiry_date", resp.GetExpiryDate())
+	d.Set("registered_date", resp.GetRegisteredDate())
+	d.Set("renew", resp.GetRenew())
+	d.Set("registrant", resp.GetRegistrant())
+	d.Set("status", resp.GetStatus())
+	d.Set("nameservers", resp.GetNameservers())
 
 	var services []interface{}
-	if resp.Services != nil {
+	if resp.HasServices() {
 		services = append(services, map[string]interface{}{
-			"registrar": resp.Services.Registrar,
-			"dns":       resp.Services.Dns,
-			"email":     resp.Services.Email,
-			"webhotel":  resp.Services.Webhotel,
+			"registrar": resp.Services.GetRegistrar(),
+			"dns":       resp.Services.GetDns(),
+			"email":     resp.Services.GetEmail(),
+			"webhotel":  resp.Services.GetWebhotel(),
 		})
 	}
 	d.Set("services", services)

@@ -53,7 +53,7 @@ func dataSourceRecords() *schema.Resource {
 							Computed:    true,
 						},
 						"type": {
-							Description: "The type of the record. Possible values are: `A`, `AAAA`, `CNAME`, `MX`, `SRV`, `TXT`.",
+							Description: "The type of the record.",
 							Type:        schema.TypeString,
 							Computed:    true,
 						},

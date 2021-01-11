@@ -42,7 +42,7 @@ data "domeneshop_record" "example" {
 - **selector** (Number) TLSA record selector.
 - **tag** (Number) CAA/DS record tag.
 - **ttl** (Number) TTL of DNS record in seconds.
-- **type** (String) The type of the record. Possible values are: `A`, `AAAA`, `CNAME`, `MX`, `SRV`, `TXT`.
+- **type** (String) The type of the record.
 - **usage** (Number) TLSA record certificate usage.
 - **weight** (Number) SRV record weight. Relevant if multiple records have same preference.
 
