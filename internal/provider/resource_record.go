@@ -34,11 +34,13 @@ func resourceRecord() *schema.Resource {
 				Description: "The host/subdomain the DNS record applies to.",
 				Type:        schema.TypeString,
 				Required:    true,
+				ForceNew:    true,
 			},
 			"type": {
 				Description: "The type of the record. Possible values are: `A`, `AAAA`, `ANAME`, `CNAME`, `DS`, `MX`, `NS`, `SRV`, `TXT`, `TLSA`.",
 				Type:        schema.TypeString,
 				Required:    true,
+				ForceNew:    true,
 			},
 			"data": {
 				Description: "The value of the record.",
