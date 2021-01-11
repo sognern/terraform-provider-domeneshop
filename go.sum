@@ -360,6 +360,16 @@ github.com/innovationnorway/go-domeneshop v0.0.0-20210110034855-e7d5faa27bec h1:
 github.com/innovationnorway/go-domeneshop v0.0.0-20210110034855-e7d5faa27bec/go.mod h1:nqU//hAqvieMfBZ+mucD6o34zq1e62O7i4mYsvbNEnk=
 github.com/innovationnorway/go-domeneshop v0.0.0-20210110050507-6a8be0742c12 h1:B7/7oRpO3vxc17O7z6mjC9Xy0pkVKZ+LdbTH6kftwOw=
 github.com/innovationnorway/go-domeneshop v0.0.0-20210110050507-6a8be0742c12/go.mod h1:nqU//hAqvieMfBZ+mucD6o34zq1e62O7i4mYsvbNEnk=
+github.com/innovationnorway/go-domeneshop v0.0.0-20210110201940-74bd1e82f402 h1:RZQEm6TYWgkSGYkSQzFgFW5VsZkVWUvl9wwnCBjJPGA=
+github.com/innovationnorway/go-domeneshop v0.0.0-20210110201940-74bd1e82f402/go.mod h1:nqU//hAqvieMfBZ+mucD6o34zq1e62O7i4mYsvbNEnk=
+github.com/innovationnorway/go-domeneshop v0.0.0-20210110203806-a553a6b4a26a h1:RIb3cQc1kZDSxNx4nXwJ+LEFGEflPehwyZriTu42jnI=
+github.com/innovationnorway/go-domeneshop v0.0.0-20210110203806-a553a6b4a26a/go.mod h1:nqU//hAqvieMfBZ+mucD6o34zq1e62O7i4mYsvbNEnk=
+github.com/innovationnorway/go-domeneshop v0.0.0-20210110205217-016bfc2bc102 h1:kKwPo2ErdrhF0a7IltyaPlAe4rbvv8LNpGT1Mzorgv0=
+github.com/innovationnorway/go-domeneshop v0.0.0-20210110205217-016bfc2bc102/go.mod h1:nqU//hAqvieMfBZ+mucD6o34zq1e62O7i4mYsvbNEnk=
+github.com/innovationnorway/go-domeneshop v0.0.0-20210110221134-4007e0fecd34 h1:oGxVo4wdROURLKVg3P+1fXlFVXxAAQ/aN3WVQ6RyPHQ=
+github.com/innovationnorway/go-domeneshop v0.0.0-20210110221134-4007e0fecd34/go.mod h1:nqU//hAqvieMfBZ+mucD6o34zq1e62O7i4mYsvbNEnk=
+github.com/innovationnorway/go-domeneshop v0.0.0-20210110233307-7c2b1191af67 h1:R+UkFNVJ+mjH8gpOa24O86f07M0+kDuIz81j3sPZU/g=
+github.com/innovationnorway/go-domeneshop v0.0.0-20210110233307-7c2b1191af67/go.mod h1:nqU//hAqvieMfBZ+mucD6o34zq1e62O7i4mYsvbNEnk=
 github.com/jbenet/go-context v0.0.0-20150711004518-d14ea06fba99 h1:BQSFePA1RWJOlocH6Fxy8MmwDt+yVQYULKfN0RoTN8A=
 github.com/jbenet/go-context v0.0.0-20150711004518-d14ea06fba99/go.mod h1:1lJo3i6rXxKeerYnT8Nvf0QmHCRC1n8sfWVwXF2Frvo=
 github.com/jessevdk/go-flags v1.4.0/go.mod h1:4FA24M0QyGHXBuZZK/XkWh8h0e1EYbRYJSGM75WSRxI=

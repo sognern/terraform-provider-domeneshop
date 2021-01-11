@@ -30,13 +30,16 @@ func New(version string) func() *schema.Provider {
 				},
 			},
 			DataSourcesMap: map[string]*schema.Resource{
-				"domeneshop_domain":  dataSourceDomain(),
-				"domeneshop_domains": dataSourceDomains(),
-				"domeneshop_record":  dataSourceRecord(),
-				"domeneshop_records": dataSourceRecords(),
+				"domeneshop_domain":   dataSourceDomain(),
+				"domeneshop_domains":  dataSourceDomains(),
+				"domeneshop_forward":  dataSourceForward(),
+				"domeneshop_forwards": dataSourceForwards(),
+				"domeneshop_record":   dataSourceRecord(),
+				"domeneshop_records":  dataSourceRecords(),
 			},
 			ResourcesMap: map[string]*schema.Resource{
-				"domeneshop_record": resourceRecord(),
+				"domeneshop_forward": resourceForward(),
+				"domeneshop_record":  resourceRecord(),
 			},
 		}
 
